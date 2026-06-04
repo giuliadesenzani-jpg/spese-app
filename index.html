@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spese</title>
+</head>
+<body>
+
+  <h2>Nuova Spesa</h2>
+
+  <input id="data" placeholder="Data" type="date"><br><br>
+  <input id="mese" placeholder="mese" type="number"><br><br>
+  <input id="anno" placeholder="anno" type="number"><br><br>
+  <input id="oggetto" placeholder="oggetto"><br><br>
+  <input id="importo" placeholder="Importo" type="number"><br><br>
+  <input id="tipo" placeholder="tipo"><br><br>
+  <input id="categoria" placeholder="Categoria"><br><br>
+  <input id="etichetta" placeholder="etichette"><br><br>
+
+  <button onclick="send()">Salva</button>
+
+  <script>
+    async function send() {
+      const data = {
+        data: document.getElementById("data").value,
+        mese: document.getElementById("mese").value,
+        anno: document.getElementById("anno").value,
+        oggetto: document.getElementById("oggetto").value,
+        importo: document.getElementById("importo").value,
+        tipo: document.getElementById("tipo").value,
+        categoria: document.getElementById("categoria").value,
+        etichetta: document.getElementById("etichetta").value
+      };
+
+      await fetch("https://script.google.com/macros/s/AKfycbzKFi-GvfPQhmB7PJtiz7FeAf4sUALLR90d0IevwdFyKn20vEXx6JI9Bqo0UM_4s6RjqQ/exec", {
+        method: "POST",
+        body: JSON.stringify(data)
+      });
+
+      alert("Spesa salvata!");
+    }
+  </script>
+
+</body>
+</html>
