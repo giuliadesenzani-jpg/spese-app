@@ -34,6 +34,9 @@
 
       await fetch("https://script.google.com/macros/s/AKfycbzHwIvCdL45mjepvj8TdYBEodJkSiVnzJt1lZ-jF3hbz0pZLHZT_l4voMYwo81-t2ee/exec", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+         },
         body: JSON.stringify(data)
       });
 
