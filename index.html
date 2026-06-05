@@ -5,24 +5,72 @@
   <title>Spese</title>
 </head>
 <body>
-
   <h2>Nuova Spesa</h2>
 
-  <input id="data" placeholder="Data" type="date"><br><br>
-  <input id="mese" placeholder="mese"><br><br>
-  <input id="anno" placeholder="anno" type="number"><br><br>
-  <input id="oggetto" placeholder="oggetto"><br><br>
+  <select id="mese"><br>
+    <option value="">-- Mese --</option>
+    <option>GENNAIO</option>
+    <option>FEBBRAIO</option>
+    <option>MARZO</option>
+    <option>APRILE</option>
+    <option>MAGGIO</option>
+    <option>GIUGNO</option>
+    <option>LUGLIO</option>
+    <option>AGOSTO</option>
+    <option>SETTEMBRE</option>
+    <option>OTTOBRE</option>
+    <option>NOVEMBRE</option>
+    <option>DICEMBRE</option>
+  </select><br><br>
+
+  <input id="anno" placeholder="Anno" type="number"><br><br>
+  <input id="oggetto" placeholder="Oggetto"><br><br>
   <input id="importo" placeholder="Importo" type="number"><br><br>
-  <input id="tipo" placeholder="tipo"><br><br>
-  <input id="categoria" placeholder="Categoria"><br><br>
-  <input id="etichetta" placeholder="etichette"><br><br>
+
+  <select id="tipo">
+    <option value="">-- Tipo --</option>
+    <option>Uscita</option>
+    <option>Entrata</option>
+  </select><br><br>
+
+  <select id="categoria">
+    <option value="">-- Categoria --</option>
+    <option>Casa</option>
+    <option>Auto</option>
+    <option>Bollette</option>
+    <option>Cibo</option>
+    <option>Cura personale</option>
+    <option>Spese mediche</option>
+    <option>Vestiti base</option>
+    <option>Cose casa</option>
+    <option>Sport</option>
+    <option>Altro necessità</option>
+    <option>Uscite</option>
+    <option>Sport +</option>
+    <option>Cultura</option>
+    <option>Vacanza</option>
+    <option>Regali</option>
+    <option>Cura extra</option>
+    <option>Vestiti extra</option>
+    <option>Altro extra</option>
+    <option>Istruzione</option>
+    <option>Mercati</option>
+    <option>Lavoro</option>
+  </select><br><br>
+
+  <select id="etichetta">
+    <option value="">-- Etichetta --</option>
+    <option>NECESSITA</option>
+    <option>DIVERTIMENTO</option>
+    <option>INVESTIMENTO</option>
+    <option>TRASFERTA</option>
+  </select><br><br>
 
   <button onclick="send()">Salva</button>
 
   <script>
     async function send() {
       const data = {
-        data: document.getElementById("data").value,
         mese: document.getElementById("mese").value,
         anno: document.getElementById("anno").value,
         oggetto: document.getElementById("oggetto").value,
@@ -31,18 +79,15 @@
         categoria: document.getElementById("categoria").value,
         etichetta: document.getElementById("etichetta").value
       };
-
-      await fetch("https://script.google.com/macros/s/AKfycbzHwIvCdL45mjepvj8TdYBEodJkSiVnzJt1lZ-jF3hbz0pZLHZT_l4voMYwo81-t2ee/exec", {
+      await fetch("https://script.google.com/macros/s/AKfycbzlm4U9D7tBlOlTigWF6CM0nNg0sqr0tpOswItVtjEpqqmxoyKftLHDxTQ07V6fhxOt/exec", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
-         },
+        },
         body: JSON.stringify(data)
       });
-
       alert("Spesa salvata!");
     }
   </script>
-
 </body>
 </html>
