@@ -135,7 +135,7 @@
   </div>
 
   <script>
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwgVis0_EURe1f-3q9u6vhLdisDheITxZYm_ESnD8LLNcUxxjhAbKgGB_RJf-u8T_It/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwnndSmmUEpT3uHSBjS_2rkHFuQiZqvYDoBsf81fdhazBDgP-FzzVqyriHe1Ow7a-az/exec";
 
     async function salva() {
       const btn = document.querySelector('.btn-save');
@@ -155,7 +155,6 @@
       try {
         await fetch(APPS_SCRIPT_URL, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         });
 
