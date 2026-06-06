@@ -6,10 +6,14 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f3; min-height: 100vh; display: flex; justify-content: center; padding: 2rem 1rem; }
-    .app { background: #fff; border-radius: 16px; padding: 1.75rem 1.5rem; width: 100%; max-width: 420px; height: fit-content; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f3; min-height: 100vh; padding-bottom: 70px; }
+    .screen { display: none; padding: 2rem 1.25rem; max-width: 420px; margin: 0 auto; }
+    .screen.active { display: block; }
     .app-title { font-size: 11px; letter-spacing: 0.12em; color: #999; text-transform: uppercase; margin-bottom: 0.25rem; }
     .app-heading { font-size: 24px; font-weight: 500; color: #111; margin-bottom: 1.75rem; }
+
+    /* Form */
+    .card { background: #fff; border-radius: 16px; padding: 1.75rem 1.5rem; }
     .field { margin-bottom: 1rem; }
     .field label { display: block; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #aaa; margin-bottom: 6px; }
     .field input, .field select {
@@ -42,100 +46,231 @@
       border-radius: 8px; color: #1a7a45; font-size: 14px;
     }
     .toast.show { display: flex; animation: fadeIn 0.2s ease; }
+
+    /* Recap */
+    .mese-label { font-size: 13px; color: #999; margin-bottom: 0.5rem; }
+    .entrate-card {
+      background: #111; color: #fff;
+      border-radius: 16px; padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .entrate-card .label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.5; margin-bottom: 0.4rem; }
+    .entrate-card .valore { font-size: 36px; font-weight: 500; letter-spacing: -1px; }
+    .entrate-card .sub { font-size: 13px; opacity: 0.5; margin-top: 0.4rem; }
+    .uscite-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem; }
+    .uscita-card {
+      background: #fff; border-radius: 12px;
+      padding: 1.1rem 1rem; border: 1px solid #e5e5e5;
+    }
+    .uscita-card .label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #aaa; margin-bottom: 0.4rem; }
+    .uscita-card .valore { font-size: 22px; font-weight: 500; color: #111; }
+    .uscita-card .icon { font-size: 18px; margin-bottom: 0.5rem; }
+    .uscita-card.necessita .icon { color: #e07b39; }
+    .uscita-card.divertimento .icon { color: #5b8ef0; }
+    .uscita-card.investimento .icon { color: #3aaa72; }
+    .totale-card {
+      background: #fff; border-radius: 12px;
+      padding: 1.1rem 1rem; border: 1px solid #e5e5e5;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .totale-card .label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #aaa; }
+    .totale-card .valore { font-size: 20px; font-weight: 500; }
+    .totale-card .valore.positivo { color: #1a7a45; }
+    .totale-card .valore.negativo { color: #c0392b; }
+    .loading { text-align: center; color: #aaa; font-size: 14px; padding: 3rem 0; }
+
+    /* Nav */
+    .nav {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: #fff; border-top: 1px solid #e5e5e5;
+      display: flex; padding: 0.5rem 0 0.75rem;
+    }
+    .nav-btn {
+      flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;
+      background: none; border: none; cursor: pointer;
+      font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+      color: #aaa; font-family: inherit; padding: 0.4rem 0;
+      transition: color 0.15s;
+    }
+    .nav-btn i { font-size: 22px; }
+    .nav-btn.active { color: #111; }
+
     @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
-  <div class="app">
+
+  <!-- SCHERMATA INSERIMENTO -->
+  <div class="screen active" id="screen-inserisci">
     <p class="app-title">Budget</p>
     <h1 class="app-heading">Nuova spesa</h1>
-
-    <div class="field importo-field">
-      <label>Importo (€)</label>
-      <input id="importo" type="number" placeholder="0.00" step="0.01">
-    </div>
-
-    <div class="field">
-      <label>Oggetto</label>
-      <input id="oggetto" type="text" placeholder="Descrizione spesa">
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="row">
+    <div class="card">
+      <div class="field importo-field">
+        <label>Importo (€)</label>
+        <input id="importo" type="number" placeholder="0.00" step="0.01">
+      </div>
       <div class="field">
-        <label>Mese</label>
+        <label>Oggetto</label>
+        <input id="oggetto" type="text" placeholder="Descrizione spesa">
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="field">
+          <label>Mese</label>
+          <div class="select-wrap">
+            <select id="mese">
+              <option value="">— Mese —</option>
+              <option>GENNAIO</option><option>FEBBRAIO</option><option>MARZO</option>
+              <option>APRILE</option><option>MAGGIO</option><option>GIUGNO</option>
+              <option>LUGLIO</option><option>AGOSTO</option><option>SETTEMBRE</option>
+              <option>OTTOBRE</option><option>NOVEMBRE</option><option>DICEMBRE</option>
+            </select>
+            <i class="ti ti-chevron-down"></i>
+          </div>
+        </div>
+        <div class="field">
+          <label>Anno</label>
+          <input id="anno" type="number" placeholder="2026">
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label>Tipo</label>
+          <div class="select-wrap">
+            <select id="tipo">
+              <option value="">— Tipo —</option>
+              <option>Uscita</option>
+              <option>Entrata</option>
+            </select>
+            <i class="ti ti-chevron-down"></i>
+          </div>
+        </div>
+        <div class="field">
+          <label>Etichetta</label>
+          <div class="select-wrap">
+            <select id="etichetta">
+              <option value="">— Etichetta —</option>
+              <option>NECESSITA</option>
+              <option>DIVERTIMENTO</option>
+              <option>INVESTIMENTO</option>
+              <option>TRASFERTA</option>
+            </select>
+            <i class="ti ti-chevron-down"></i>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Categoria</label>
         <div class="select-wrap">
-          <select id="mese">
-            <option value="">— Mese —</option>
-            <option>GENNAIO</option><option>FEBBRAIO</option><option>MARZO</option>
-            <option>APRILE</option><option>MAGGIO</option><option>GIUGNO</option>
-            <option>LUGLIO</option><option>AGOSTO</option><option>SETTEMBRE</option>
-            <option>OTTOBRE</option><option>NOVEMBRE</option><option>DICEMBRE</option>
+          <select id="categoria">
+            <option value="">— Categoria —</option>
+            <option>Casa</option><option>Auto</option><option>Bollette</option>
+            <option>Cibo</option><option>Cura personale</option><option>Spese mediche</option>
+            <option>Vestiti base</option><option>Cose casa</option><option>Sport</option>
+            <option>Altro necessità</option><option>Uscite</option><option>Sport +</option>
+            <option>Cultura</option><option>Vacanza</option><option>Regali</option>
+            <option>Cura extra</option><option>Vestiti extra</option><option>Altro extra</option>
+            <option>Istruzione</option><option>Mercati</option><option>Lavoro</option>
           </select>
           <i class="ti ti-chevron-down"></i>
         </div>
       </div>
-      <div class="field">
-        <label>Anno</label>
-        <input id="anno" type="number" placeholder="2026">
+      <button class="btn-save" onclick="salva()">Salva spesa</button>
+      <div class="toast" id="toast">
+        <i class="ti ti-circle-check"></i>
+        Spesa salvata!
       </div>
-    </div>
-
-    <div class="row">
-      <div class="field">
-        <label>Tipo</label>
-        <div class="select-wrap">
-          <select id="tipo">
-            <option value="">— Tipo —</option>
-            <option>Uscita</option>
-            <option>Entrata</option>
-          </select>
-          <i class="ti ti-chevron-down"></i>
-        </div>
-      </div>
-      <div class="field">
-        <label>Etichetta</label>
-        <div class="select-wrap">
-          <select id="etichetta">
-            <option value="">— Etichetta —</option>
-            <option>NECESSITA</option>
-            <option>DIVERTIMENTO</option>
-            <option>INVESTIMENTO</option>
-            <option>TRASFERTA</option>
-          </select>
-          <i class="ti ti-chevron-down"></i>
-        </div>
-      </div>
-    </div>
-
-    <div class="field">
-      <label>Categoria</label>
-      <div class="select-wrap">
-        <select id="categoria">
-          <option value="">— Categoria —</option>
-          <option>Casa</option><option>Auto</option><option>Bollette</option>
-          <option>Cibo</option><option>Cura personale</option><option>Spese mediche</option>
-          <option>Vestiti base</option><option>Cose casa</option><option>Sport</option>
-          <option>Altro necessità</option><option>Uscite</option><option>Sport +</option>
-          <option>Cultura</option><option>Vacanza</option><option>Regali</option>
-          <option>Cura extra</option><option>Vestiti extra</option><option>Altro extra</option>
-          <option>Istruzione</option><option>Mercati</option><option>Lavoro</option>
-        </select>
-        <i class="ti ti-chevron-down"></i>
-      </div>
-    </div>
-
-    <button class="btn-save" onclick="salva()">Salva spesa</button>
-
-    <div class="toast" id="toast">
-      <i class="ti ti-circle-check"></i>
-      Spesa salvata!
     </div>
   </div>
 
+  <!-- SCHERMATA RECAP -->
+  <div class="screen" id="screen-recap">
+    <p class="app-title">Budget</p>
+    <h1 class="app-heading">Riepilogo</h1>
+    <div id="recap-content">
+      <p class="loading">Caricamento...</p>
+    </div>
+  </div>
+
+  <!-- NAVIGAZIONE -->
+  <nav class="nav">
+    <button class="nav-btn active" id="nav-inserisci" onclick="mostraSchermata('inserisci')">
+      <i class="ti ti-plus"></i>
+      Inserisci
+    </button>
+    <button class="nav-btn" id="nav-recap" onclick="mostraSchermata('recap')">
+      <i class="ti ti-chart-bar"></i>
+      Recap
+    </button>
+  </nav>
+
   <script>
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwnndSmmUEpT3uHSBjS_2rkHFuQiZqvYDoBsf81fdhazBDgP-FzzVqyriHe1Ow7a-az/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzalGu5j3Q87BnTErr6vvHcgnTKtrLrFN8SMj9G4NVr3x4RWjz2FJLKP3oDiOyChUNM/exec";
+
+    function mostraSchermata(nome) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('screen-' + nome).classList.add('active');
+      document.getElementById('nav-' + nome).classList.add('active');
+      if (nome === 'recap') caricaRecap();
+    }
+
+    function fmt(n) {
+      return Number(n).toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+    }
+
+    async function caricaRecap() {
+      document.getElementById('recap-content').innerHTML = '<p class="loading">Caricamento...</p>';
+      try {
+        const res = await fetch(APPS_SCRIPT_URL);
+        const d = await res.json();
+        const margine = d.entrate - d.uscite;
+        const classMargine = margine >= 0 ? 'positivo' : 'negativo';
+
+        document.getElementById('recap-content').innerHTML = `
+          <p class="mese-label">${d.mese} 2026</p>
+
+          <div class="entrate-card">
+            <p class="label">Entrate</p>
+            <p class="valore">${fmt(d.entrate)}</p>
+            <p class="sub">Totale incassato questo mese</p>
+          </div>
+
+          <div class="uscite-grid">
+            <div class="uscita-card necessita">
+              <i class="ti ti-home icon"></i>
+              <p class="label">Necessità</p>
+              <p class="valore">${fmt(d.necessita)}</p>
+            </div>
+            <div class="uscita-card divertimento">
+              <i class="ti ti-confetti icon"></i>
+              <p class="label">Divertimento</p>
+              <p class="valore">${fmt(d.divertimento)}</p>
+            </div>
+            <div class="uscita-card investimento">
+              <i class="ti ti-trending-up icon"></i>
+              <p class="label">Investimento</p>
+              <p class="valore">${fmt(d.investimento)}</p>
+            </div>
+            <div class="uscita-card" style="border-color:#e5e5e5;">
+              <i class="ti ti-receipt icon" style="color:#aaa;"></i>
+              <p class="label">Totale uscite</p>
+              <p class="valore">${fmt(d.uscite)}</p>
+            </div>
+          </div>
+
+          <div class="totale-card">
+            <div>
+              <p class="label">Margine</p>
+              <p style="font-size:12px; color:#aaa;">Entrate − Uscite</p>
+            </div>
+            <p class="valore ${classMargine}">${fmt(margine)}</p>
+          </div>
+        `;
+      } catch(err) {
+        document.getElementById('recap-content').innerHTML = '<p class="loading">Errore nel caricamento dei dati.</p>';
+      }
+    }
 
     async function salva() {
       const btn = document.querySelector('.btn-save');
@@ -148,26 +283,21 @@
         categoria: document.getElementById("categoria").value,
         etichetta: document.getElementById("etichetta").value
       };
-
       btn.textContent = 'Salvataggio...';
       btn.disabled = true;
-
       try {
         await fetch(APPS_SCRIPT_URL, {
           method: "POST",
           body: JSON.stringify(payload)
         });
-
         ['mese','anno','oggetto','importo','tipo','categoria','etichetta'].forEach(id => {
           const el = document.getElementById(id);
           el.tagName === 'SELECT' ? el.selectedIndex = 0 : el.value = '';
         });
-
         const toast = document.getElementById('toast');
         toast.classList.add('show');
         setTimeout(() => toast.classList.remove('show'), 3000);
-
-      } catch (err) {
+      } catch(err) {
         alert('Errore durante il salvataggio. Riprova.');
       } finally {
         btn.textContent = 'Salva spesa';
