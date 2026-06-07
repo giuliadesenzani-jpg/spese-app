@@ -34,59 +34,28 @@
     .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .divider { height: 1px; background: #f0f0f0; margin: 1.25rem 0; }
 
-    /* Toggle switch */
-    .toggle-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 10px 0; margin-bottom: 1rem;
-    }
+    .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; margin-bottom: 1rem; }
     .toggle-row .toggle-label { font-size: 14px; color: #666; }
     .toggle-wrap { position: relative; display: inline-block; width: 44px; height: 26px; }
     .toggle-wrap input { opacity: 0; width: 0; height: 0; }
-    .toggle-slider {
-      position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
-      background: #e5e5e5; border-radius: 26px; transition: 0.2s;
-    }
-    .toggle-slider:before {
-      content: ""; position: absolute;
-      width: 20px; height: 20px; left: 3px; bottom: 3px;
-      background: white; border-radius: 50%; transition: 0.2s;
-    }
+    .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #e5e5e5; border-radius: 26px; transition: 0.2s; }
+    .toggle-slider:before { content: ""; position: absolute; width: 20px; height: 20px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.2s; }
     .toggle-wrap input:checked + .toggle-slider { background: #111; }
     .toggle-wrap input:checked + .toggle-slider:before { transform: translateX(18px); }
 
-    .btn-save {
-      width: 100%; height: 50px; margin-top: 0.5rem;
-      background: #111; color: #fff;
-      border: none; border-radius: 8px;
-      font-size: 15px; font-weight: 500; font-family: inherit;
-      cursor: pointer; transition: opacity 0.15s, transform 0.1s;
-    }
+    .btn-save { width: 100%; height: 50px; margin-top: 0.5rem; background: #111; color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 500; font-family: inherit; cursor: pointer; transition: opacity 0.15s, transform 0.1s; }
     .btn-save:disabled { opacity: 0.5; }
     .btn-save:active { transform: scale(0.99); }
-    .toast {
-      display: none; align-items: center; gap: 10px;
-      margin-top: 1rem; padding: 12px 14px;
-      background: #f0faf4; border: 1px solid #b6e8cb;
-      border-radius: 8px; color: #1a7a45; font-size: 14px;
-    }
+    .toast { display: none; align-items: center; gap: 10px; margin-top: 1rem; padding: 12px 14px; background: #f0faf4; border: 1px solid #b6e8cb; border-radius: 8px; color: #1a7a45; font-size: 14px; }
     .toast.show { display: flex; animation: fadeIn 0.2s ease; }
 
-    /* Recap */
     .mese-label { font-size: 13px; color: #999; margin-bottom: 0.5rem; }
-    .entrate-card {
-      background: #111; color: #fff;
-      border-radius: 16px; padding: 1.5rem;
-      margin-bottom: 1rem;
-    }
+    .entrate-card { background: #111; color: #fff; border-radius: 16px; padding: 1.5rem; margin-bottom: 1rem; }
     .entrate-card .label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.5; margin-bottom: 0.4rem; }
     .entrate-card .valore { font-size: 36px; font-weight: 500; letter-spacing: -1px; }
     .entrate-card .sub { font-size: 13px; opacity: 0.5; margin-top: 0.4rem; }
     .uscite-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem; }
-    .uscita-card {
-      background: #fff; border-radius: 12px;
-      padding: 1.1rem 1rem; border: 1px solid #e5e5e5;
-      cursor: pointer; transition: border-color 0.15s, transform 0.1s;
-    }
+    .uscita-card { background: #fff; border-radius: 12px; padding: 1.1rem 1rem; border: 1px solid #e5e5e5; cursor: pointer; transition: border-color 0.15s, transform 0.1s; }
     .uscita-card:active { transform: scale(0.98); }
     .uscita-card .label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #aaa; margin-bottom: 0.4rem; }
     .uscita-card .valore { font-size: 22px; font-weight: 500; color: #111; }
@@ -98,63 +67,27 @@
     .uscita-card.necessita:hover { border-color: #e07b39; }
     .uscita-card.divertimento:hover { border-color: #5b8ef0; }
     .uscita-card.investimento:hover { border-color: #3aaa72; }
-    .totale-card {
-      background: #fff; border-radius: 12px;
-      padding: 1.1rem 1rem; border: 1px solid #e5e5e5;
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 1rem;
-    }
+    .totale-card { background: #fff; border-radius: 12px; padding: 1.1rem 1rem; border: 1px solid #e5e5e5; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
     .totale-card .label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #aaa; }
     .totale-card .valore { font-size: 20px; font-weight: 500; }
     .totale-card .valore.positivo { color: #1a7a45; }
     .totale-card .valore.negativo { color: #c0392b; }
     .loading { text-align: center; color: #aaa; font-size: 14px; padding: 3rem 0; }
 
-    /* Overlay */
-    .overlay {
-      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.4); z-index: 100;
-      align-items: flex-end; justify-content: center;
-    }
+    .overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); z-index: 100; align-items: flex-end; justify-content: center; }
     .overlay.show { display: flex; animation: fadeIn 0.2s ease; }
-    .overlay-panel {
-      background: #fff; border-radius: 20px 20px 0 0;
-      padding: 1.5rem 1.25rem 2rem;
-      width: 100%; max-width: 420px;
-      max-height: 75vh; overflow-y: auto;
-    }
-    .overlay-header {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 1.25rem;
-    }
+    .overlay-panel { background: #fff; border-radius: 20px 20px 0 0; padding: 1.5rem 1.25rem 2rem; width: 100%; max-width: 420px; max-height: 75vh; overflow-y: auto; }
+    .overlay-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; }
     .overlay-title { font-size: 17px; font-weight: 500; color: #111; }
-    .overlay-close {
-      background: #f0f0f0; border: none; border-radius: 50%;
-      width: 30px; height: 30px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px; color: #666;
-    }
-    .cat-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0.75rem 0; border-bottom: 1px solid #f0f0f0;
-    }
+    .overlay-close { background: #f0f0f0; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; color: #666; }
+    .cat-row { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid #f0f0f0; }
     .cat-row:last-child { border-bottom: none; }
     .cat-row .cat-nome { font-size: 15px; color: #111; }
     .cat-row .cat-valore { font-size: 15px; font-weight: 500; color: #111; }
     .cat-row.zero .cat-nome, .cat-row.zero .cat-valore { color: #ccc; }
 
-    /* Nav */
-    .nav {
-      position: fixed; bottom: 0; left: 0; right: 0;
-      background: #fff; border-top: 1px solid #e5e5e5;
-      display: flex; padding: 0.5rem 0 0.75rem; z-index: 50;
-    }
-    .nav-btn {
-      flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;
-      background: none; border: none; cursor: pointer;
-      font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
-      color: #aaa; font-family: inherit; padding: 0.4rem 0; transition: color 0.15s;
-    }
+    .nav { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid #e5e5e5; display: flex; padding: 0.5rem 0 0.75rem; z-index: 50; }
+    .nav-btn { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; background: none; border: none; cursor: pointer; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #aaa; font-family: inherit; padding: 0.4rem 0; transition: color 0.15s; }
     .nav-btn i { font-size: 22px; }
     .nav-btn.active { color: #111; }
 
@@ -238,9 +171,7 @@
           <i class="ti ti-chevron-down"></i>
         </div>
       </div>
-
       <div class="divider"></div>
-
       <div class="toggle-row">
         <span class="toggle-label">Solo Cash Flow</span>
         <label class="toggle-wrap">
@@ -248,7 +179,6 @@
           <span class="toggle-slider"></span>
         </label>
       </div>
-
       <button class="btn-save" onclick="salva()">Salva spesa</button>
       <div class="toast" id="toast">
         <i class="ti ti-circle-check"></i>
@@ -261,12 +191,17 @@
   <div class="screen" id="screen-recap">
     <p class="app-title">Budget</p>
     <h1 class="app-heading">Riepilogo</h1>
-    <div id="recap-content">
-      <p class="loading">Caricamento...</p>
-    </div>
+    <div id="recap-content"><p class="loading">Caricamento...</p></div>
   </div>
 
-  <!-- OVERLAY DETTAGLIO -->
+  <!-- CASH FLOW -->
+  <div class="screen" id="screen-cashflow">
+    <p class="app-title">Budget</p>
+    <h1 class="app-heading">Cash Flow</h1>
+    <div id="cashflow-content"><p class="loading">Caricamento...</p></div>
+  </div>
+
+  <!-- OVERLAY -->
   <div class="overlay" id="overlay" onclick="chiudiOverlay(event)">
     <div class="overlay-panel">
       <div class="overlay-header">
@@ -289,10 +224,14 @@
       <i class="ti ti-chart-bar"></i>
       Recap
     </button>
+    <button class="nav-btn" id="nav-cashflow" onclick="mostraSchermata('cashflow')">
+      <i class="ti ti-arrows-exchange"></i>
+      Cash Flow
+    </button>
   </nav>
 
   <script>
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwTBdY0ksWnitsI-x5_13geIRmnFg0u5eUyHCorng-mnDINOdicGjxEU9ckhAmKj7wh/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyP1HTdKcAA7oYfMOT2mo8maDrnoUIGuFkzktUdeNG_rS1A155CEOjQ1Xfn2qjs6To/exec";
     let datiRecap = null;
 
     function mostraSchermata(nome) {
@@ -300,25 +239,29 @@
       document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
       document.getElementById('screen-' + nome).classList.add('active');
       document.getElementById('nav-' + nome).classList.add('active');
-      if (nome === 'recap') caricaRecap();
+      if (nome === 'recap' || nome === 'cashflow') caricaRecap(nome);
     }
 
     function fmt(n) {
       return Number(n).toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
     }
 
-    function apriDettaglio(tipo) {
+    function apriDettaglio(tipo, isCF) {
       if (!datiRecap) return;
       const titoli = { necessita: 'Necessità', divertimento: 'Divertimento' };
-      const dati = tipo === 'necessita' ? datiRecap.dettaglio_necessita : datiRecap.dettaglio_divertimento;
+      let dati;
+      if (isCF) {
+        dati = tipo === 'necessita' ? datiRecap.cf_dettaglio_necessita : datiRecap.cf_dettaglio_divertimento;
+      } else {
+        dati = tipo === 'necessita' ? datiRecap.dettaglio_necessita : datiRecap.dettaglio_divertimento;
+      }
       document.getElementById('overlay-title').textContent = titoli[tipo];
       document.getElementById('overlay-body').innerHTML = Object.entries(dati)
         .map(([nome, val]) => `
           <div class="cat-row ${val == 0 ? 'zero' : ''}">
             <span class="cat-nome">${nome}</span>
             <span class="cat-valore">${fmt(val)}</span>
-          </div>`)
-        .join('');
+          </div>`).join('');
       document.getElementById('overlay').classList.add('show');
     }
 
@@ -328,54 +271,72 @@
       }
     }
 
-    async function caricaRecap() {
-      document.getElementById('recap-content').innerHTML = '<p class="loading">Caricamento...</p>';
+    function buildRecapHTML(mese, entrate, uscite, necessita, divertimento, investimento, isCF) {
+      const margine = entrate - uscite;
+      const classMargine = margine >= 0 ? 'positivo' : 'negativo';
+      const cf = isCF ? 'true' : 'false';
+      return `
+        <p class="mese-label">${mese} 2026</p>
+        <div class="entrate-card">
+          <p class="label">Entrate</p>
+          <p class="valore">${fmt(entrate)}</p>
+          <p class="sub">Totale incassato questo mese</p>
+        </div>
+        <div class="uscite-grid">
+          <div class="uscita-card necessita" onclick="apriDettaglio('necessita', ${cf})">
+            <i class="ti ti-home icon"></i>
+            <p class="label">Necessità</p>
+            <p class="valore">${fmt(necessita)}</p>
+            <p class="hint">Tocca per dettaglio</p>
+          </div>
+          <div class="uscita-card divertimento" onclick="apriDettaglio('divertimento', ${cf})">
+            <i class="ti ti-confetti icon"></i>
+            <p class="label">Divertimento</p>
+            <p class="valore">${fmt(divertimento)}</p>
+            <p class="hint">Tocca per dettaglio</p>
+          </div>
+          <div class="uscita-card investimento">
+            <i class="ti ti-trending-up icon"></i>
+            <p class="label">Investimento</p>
+            <p class="valore">${fmt(investimento)}</p>
+          </div>
+          <div class="uscita-card" style="cursor:default;">
+            <i class="ti ti-receipt icon" style="color:#aaa;"></i>
+            <p class="label">Totale uscite</p>
+            <p class="valore">${fmt(uscite)}</p>
+          </div>
+        </div>
+        <div class="totale-card">
+          <div>
+            <p class="label">Margine</p>
+            <p style="font-size:12px; color:#aaa;">Entrate − Uscite</p>
+          </div>
+          <p class="valore ${classMargine}">${fmt(margine)}</p>
+        </div>
+      `;
+    }
+
+    async function caricaRecap(schermata) {
+      const contentId = schermata === 'cashflow' ? 'cashflow-content' : 'recap-content';
+      document.getElementById(contentId).innerHTML = '<p class="loading">Caricamento...</p>';
       try {
-        const res = await fetch(APPS_SCRIPT_URL);
-        datiRecap = await res.json();
-        const margine = datiRecap.entrate - datiRecap.uscite;
-        const classMargine = margine >= 0 ? 'positivo' : 'negativo';
-        document.getElementById('recap-content').innerHTML = `
-          <p class="mese-label">${datiRecap.mese} 2026</p>
-          <div class="entrate-card">
-            <p class="label">Entrate</p>
-            <p class="valore">${fmt(datiRecap.entrate)}</p>
-            <p class="sub">Totale incassato questo mese</p>
-          </div>
-          <div class="uscite-grid">
-            <div class="uscita-card necessita" onclick="apriDettaglio('necessita')">
-              <i class="ti ti-home icon"></i>
-              <p class="label">Necessità</p>
-              <p class="valore">${fmt(datiRecap.necessita)}</p>
-              <p class="hint">Tocca per dettaglio</p>
-            </div>
-            <div class="uscita-card divertimento" onclick="apriDettaglio('divertimento')">
-              <i class="ti ti-confetti icon"></i>
-              <p class="label">Divertimento</p>
-              <p class="valore">${fmt(datiRecap.divertimento)}</p>
-              <p class="hint">Tocca per dettaglio</p>
-            </div>
-            <div class="uscita-card investimento">
-              <i class="ti ti-trending-up icon"></i>
-              <p class="label">Investimento</p>
-              <p class="valore">${fmt(datiRecap.investimento)}</p>
-            </div>
-            <div class="uscita-card" style="cursor:default;">
-              <i class="ti ti-receipt icon" style="color:#aaa;"></i>
-              <p class="label">Totale uscite</p>
-              <p class="valore">${fmt(datiRecap.uscite)}</p>
-            </div>
-          </div>
-          <div class="totale-card">
-            <div>
-              <p class="label">Margine</p>
-              <p style="font-size:12px; color:#aaa;">Entrate − Uscite</p>
-            </div>
-            <p class="valore ${classMargine}">${fmt(margine)}</p>
-          </div>
-        `;
+        if (!datiRecap) {
+          const res = await fetch(APPS_SCRIPT_URL);
+          datiRecap = await res.json();
+        }
+        if (schermata === 'recap') {
+          document.getElementById('recap-content').innerHTML = buildRecapHTML(
+            datiRecap.mese, datiRecap.entrate, datiRecap.uscite,
+            datiRecap.necessita, datiRecap.divertimento, datiRecap.investimento, false
+          );
+        } else {
+          document.getElementById('cashflow-content').innerHTML = buildRecapHTML(
+            datiRecap.mese, datiRecap.cf_entrate, datiRecap.cf_uscite,
+            datiRecap.cf_necessita, datiRecap.cf_divertimento, datiRecap.cf_investimento, true
+          );
+        }
       } catch(err) {
-        document.getElementById('recap-content').innerHTML = '<p class="loading">Errore nel caricamento.</p>';
+        document.getElementById(contentId).innerHTML = '<p class="loading">Errore nel caricamento.</p>';
       }
     }
 
@@ -403,6 +364,7 @@
           el.tagName === 'SELECT' ? el.selectedIndex = 0 : el.value = '';
         });
         document.getElementById("cashflow").checked = false;
+        datiRecap = null; // forza ricaricamento dati aggiornati
         const toast = document.getElementById('toast');
         toast.classList.add('show');
         setTimeout(() => toast.classList.remove('show'), 3000);
